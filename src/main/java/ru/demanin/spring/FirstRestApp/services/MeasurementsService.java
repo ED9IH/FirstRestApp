@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.demanin.spring.FirstRestApp.models.Measurements;
 import ru.demanin.spring.FirstRestApp.models.Sensor;
 import ru.demanin.spring.FirstRestApp.repositories.MeasurementsRepository;
+import ru.demanin.spring.FirstRestApp.util.SensorNotFoundException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -24,6 +25,10 @@ public class MeasurementsService {
     public List<Measurements> findAll() {
         return measurementsRepository.findAll();
 
+    }
+    public Measurements findOne(int id) {
+        Optional<Measurements> foundPerson = measurementsRepository.findById(id);
+        return foundPerson.orElse(null);
     }
 
 

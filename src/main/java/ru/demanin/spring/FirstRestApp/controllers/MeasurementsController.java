@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.demanin.spring.FirstRestApp.models.Measurements;
+import ru.demanin.spring.FirstRestApp.models.Sensor;
 import ru.demanin.spring.FirstRestApp.services.MeasurementsService;
 
 
@@ -36,6 +37,10 @@ public class MeasurementsController {
 
        measurementsService.save(measurements);
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+    @GetMapping("/{id}")
+    public Measurements getMeasurements(@PathVariable("id") int id) {
+        return measurementsService.findOne(id); // Jackson конвертирует в JSON
     }
 
 }

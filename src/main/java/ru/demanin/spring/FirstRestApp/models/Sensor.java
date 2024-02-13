@@ -3,6 +3,7 @@ package ru.demanin.spring.FirstRestApp.models;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -16,11 +17,9 @@ public class Sensor {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @NotEmpty(message = "Поле не должно быть пустым")
     @Column(name = "name")
     private String name;
-
-
 
 
     public Sensor(String name) {

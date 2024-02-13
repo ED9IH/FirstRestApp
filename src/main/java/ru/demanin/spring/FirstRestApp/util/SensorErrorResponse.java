@@ -1,9 +1,9 @@
 package ru.demanin.spring.FirstRestApp.util;
 
-public class SensorErrorRespons{
+public class SensorErrorResponse {
      private String message;
 
-    public SensorErrorRespons(String message) {
+    public SensorErrorResponse(String message) {
         this.message = message;
     }
 

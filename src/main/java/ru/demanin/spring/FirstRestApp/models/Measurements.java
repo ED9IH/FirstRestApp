@@ -3,6 +3,7 @@ package ru.demanin.spring.FirstRestApp.models;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -15,9 +16,10 @@ public class Measurements {
     private int id;
 
     @ManyToOne()
-    @JoinColumn(name = "sensor_id",referencedColumnName = "id")
+    @JoinColumn(name = "sensor_id", referencedColumnName = "id")
     private Sensor sensor;
-
+    @NotEmpty(message = "Поле не должно быть пустым")
+    @Size(min=-100,max=100)
     @Column(name = "value")
     private double value;
     @Column(name = "raining")
@@ -25,7 +27,6 @@ public class Measurements {
 
     @Column(name = "rainy_days_count")
     private int rainyDaysCount;
-
 
 
     public Measurements() {
