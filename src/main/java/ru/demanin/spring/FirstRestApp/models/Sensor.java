@@ -1,25 +1,37 @@
 package ru.demanin.spring.FirstRestApp.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Sensor")
+@Table(name = "sensor")
 public class Sensor {
+    @OneToMany(mappedBy = "sensor")
+
+    private List<Measurements> measurements;
+
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
+
+
     private String name;
 
 
-    public Sensor() {
 
-    }
 
     public Sensor(String name) {
         this.name = name;
+
+    }
+
+    public Sensor() {
 
     }
 

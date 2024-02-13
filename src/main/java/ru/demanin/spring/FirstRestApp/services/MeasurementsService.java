@@ -8,25 +8,34 @@ import ru.demanin.spring.FirstRestApp.repositories.MeasurementsRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class MeasurementsServis {
-    private final MeasurementsRepository measurementsRepository;
+public class MeasurementsService {
+   private final MeasurementsRepository measurementsRepository;
 
-    @Autowired
-    public MeasurementsServis(MeasurementsRepository measurementsRepository) {
+    public MeasurementsService(MeasurementsRepository measurementsRepository) {
         this.measurementsRepository = measurementsRepository;
     }
 
-    public List<MeasurementsRepository> findAll() {
+    public List<Measurements> findAll() {
         return measurementsRepository.findAll();
 
     }
 
-    @Transactional
-   public void save(Measurements measurements){
-       
+
+
+
+   public Measurements save(Measurements measurements){
+        long l=findAll().stream().filter(m-> m.isRaining()==true).count();
+
+
+
+        return measurementsRepository.save(measurements);
+
     }
 
 }
