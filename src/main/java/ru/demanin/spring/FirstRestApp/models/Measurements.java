@@ -16,7 +16,6 @@ public class Measurements {
 
     @ManyToOne()
     @JoinColumn(name = "sensor_id",referencedColumnName = "id")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Sensor sensor;
 
     @Column(name = "value")
@@ -36,6 +35,7 @@ public class Measurements {
         this.value = value;
         this.raining = raining;
         this.rainyDaysCount = rainyDaysCount;
+
 
     }
 
@@ -78,4 +78,6 @@ public class Measurements {
     public void setRainyDaysCount(int rainyDaysCount) {
         this.rainyDaysCount = rainyDaysCount;
     }
+
+
 }

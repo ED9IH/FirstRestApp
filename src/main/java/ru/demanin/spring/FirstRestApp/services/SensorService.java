@@ -45,16 +45,8 @@ public class SensorService {
     @Transactional
     public void save(Sensor sensor) {
 
-//       String name= sensorRepository.findSensorsByName(sensor).toString();
-      boolean result= findAll().stream().filter(s-> s.getName().equals(sensor.getName())).isParallel();
-//        boolean result = name.equals(sensor.getName());
-        if(result){
-            throw new RuntimeException();
-        }
-        else {sensorRepository.save(sensor);}
+        sensorRepository.save(sensor);
 
-//       findAll().stream()
-//                .anyMatch(s -> s.getName().equals(sensor.getName()));
 
 
     }

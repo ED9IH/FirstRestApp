@@ -30,7 +30,7 @@ public class MeasurementsService {
 
 
    public Measurements save(Measurements measurements){
-        long l=findAll().stream().filter(m-> m.isRaining()==true).count();
+       // long l=findAll().stream().filter(m-> m.isRaining()==true).count();
 
 
 

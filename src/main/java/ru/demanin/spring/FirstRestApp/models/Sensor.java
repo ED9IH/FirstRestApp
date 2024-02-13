@@ -9,7 +9,6 @@ import java.util.List;
 @Table(name = "sensor")
 public class Sensor {
     @OneToMany(mappedBy = "sensor")
-
     private List<Measurements> measurements;
 
 
@@ -19,8 +18,6 @@ public class Sensor {
     private int id;
 
     @Column(name = "name")
-
-
     private String name;
 
 
@@ -51,5 +48,11 @@ public class Sensor {
         this.name = name;
     }
 
+    public List<Measurements> getMeasurements() {
+        return measurements;
+    }
 
+    public void setMeasurements(List<Measurements> measurements) {
+        this.measurements = measurements;
+    }
 }
