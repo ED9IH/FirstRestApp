@@ -15,8 +15,8 @@ public class MeasurementsDTO {
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
     private Sensor sensor;
 
-    public String getSensor() {
-        return sensor.getName();
+    public Sensor getSensor() {
+        return sensor;
     }
 
     public void setSensor(Sensor sensor) {
