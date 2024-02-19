@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.demanin.spring.FirstRestApp.models.Measurements;
-import ru.demanin.spring.FirstRestApp.models.Sensor;
 import ru.demanin.spring.FirstRestApp.services.MeasurementsService;
 
 
@@ -30,7 +29,7 @@ public class MeasurementsController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<HttpStatus> create(@RequestBody Measurements measurements,
+    public ResponseEntity<HttpStatus> create(@RequestBody @Valid Measurements measurements,
                                              BindingResult bindingResult) {
 
 
@@ -41,6 +40,10 @@ public class MeasurementsController {
     @GetMapping("/{id}")
     public Measurements getMeasurements(@PathVariable("id") int id) {
         return measurementsService.findOne(id); // Jackson конвертирует в JSON
+    }
+    @GetMapping("/rainyDaysCount")
+    public long RainyDaysCount(){
+    return measurementsService.RainyDaysCount();
     }
 
 }

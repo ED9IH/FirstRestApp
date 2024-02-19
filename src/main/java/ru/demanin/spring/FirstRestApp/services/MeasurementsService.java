@@ -1,17 +1,12 @@
 package ru.demanin.spring.FirstRestApp.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.demanin.spring.FirstRestApp.models.Measurements;
-import ru.demanin.spring.FirstRestApp.models.Sensor;
 import ru.demanin.spring.FirstRestApp.repositories.MeasurementsRepository;
-import ru.demanin.spring.FirstRestApp.util.SensorNotFoundException;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -40,6 +35,11 @@ public class MeasurementsService {
 
 
         return measurementsRepository.save(measurements);
+
+    }
+
+    public long RainyDaysCount(){
+         return findAll().stream().filter(m-> m.isRaining()==true).count();
 
     }
 

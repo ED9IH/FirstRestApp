@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,9 @@ public class Sensor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotEmpty(message = "Поле не должно быть пустым")
+    @Size(min=3,max = 30,message = "В название сенсора должно быть не меньше 3 и не более 30 символов")
     @Column(name = "name")
+
     private String name;
 
 
@@ -47,11 +50,11 @@ public class Sensor {
         this.name = name;
     }
 
-    public List<Measurements> getMeasurements() {
-        return measurements;
-    }
+//    public List<Measurements> getMeasurements() {
+//        return measurements;
+//    }
 
-    public void setMeasurements(List<Measurements> measurements) {
-        this.measurements = measurements;
-    }
+//    public void setMeasurements(List<Measurements> measurements) {
+//        this.measurements = measurements;
+//    }
 }

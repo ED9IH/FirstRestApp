@@ -43,6 +43,7 @@ public class SensorService {
 
     @Transactional
     public void save(Sensor sensor) {
+//        findAll().stream().filter(s-> s.getName().equals(sensor.getName())).findFirst().orElseThrow();
 
         sensorRepository.save(sensor);
     }
