@@ -1,5 +1,6 @@
 package ru.demanin.spring.FirstRestApp.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController // @Controller + @ResponseBody над каждым методом
@@ -24,21 +26,23 @@ import java.util.List;
 public class SensorController {
 
     private final SensorService sensorService;
+    private final ModelMapper modelMapper;
 
 
     @Autowired
-    public SensorController(SensorService sensorService) {
+    public SensorController(SensorService sensorService,ModelMapper modelMapper) {
         this.sensorService = sensorService;
+        this.modelMapper=modelMapper;
     }
 
     @GetMapping()
-    public List<Sensor> getSensor() {
-        return sensorService.findAll(); // Jackson конвертирует эти объекты в JSON
+    public List<SensorDTO> getSensor() {
+        return sensorService.findAll().stream().map(this::convertToSensorDTO).collect(Collectors.toList()); // Jackson конвертирует эти объекты в JSON
     }
 
     @GetMapping("/{id}")
-    public Sensor getSensor(@PathVariable("id") int id) {
-        return sensorService.findOne(id); // Jackson конвертирует в JSON
+    public SensorDTO getSensor(@PathVariable("id") int id) {
+        return convertToSensorDTO(sensorService.findOne(id)); // Jackson конвертирует в JSON
     }
 
     @PostMapping("/registration")
@@ -59,11 +63,7 @@ public class SensorController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    private Sensor convrtToSensor(SensorDTO sensorDTO) {
-        Sensor sensor = new Sensor();
-        sensor.setName(sensorDTO.getName());
-        return sensor;
-    }
+
 
     @ExceptionHandler
     public ResponseEntity<SensorErrorResponse> handleException(SensorNotFoundException e) {
@@ -83,6 +83,13 @@ public class SensorController {
     public ResponseEntity<SensorErrorResponse> handleSqlException(SQLException exception) {
         SensorErrorResponse response = new SensorErrorResponse(exception.getMessage());
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    private Sensor convrtToSensor(SensorDTO sensorDTO) {
+        return modelMapper.map(sensorDTO, Sensor.class);
+    }
+    private SensorDTO convertToSensorDTO(Sensor sensor){
+        return modelMapper.map(sensor,SensorDTO.class);
     }
 
 

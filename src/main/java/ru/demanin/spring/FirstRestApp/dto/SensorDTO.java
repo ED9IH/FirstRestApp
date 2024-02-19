@@ -8,7 +8,6 @@ public class SensorDTO {
 
     @NotEmpty(message = "Поле не должно быть пустым")
     @Size(min=3,max = 30,message = "В название сенсора должно быть не меньше 3 и не более 30 символов")
-    @Column(name = "name")
     private String name;
 
     public String getName() {

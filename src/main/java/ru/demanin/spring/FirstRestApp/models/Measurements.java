@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "measurements")
@@ -27,10 +28,14 @@ public class Measurements {
 
     @Column(name = "rainy_days_count")
     private int rainyDaysCount;
+    @Column(name = "created_at")
+    private LocalDateTime created_at;
 
 
     public Measurements() {
     }
+
+
 
     public Measurements(double value, boolean raining, int rainyDaysCount) {
         this.value = value;
@@ -80,5 +85,11 @@ public class Measurements {
         this.rainyDaysCount = rainyDaysCount;
     }
 
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
 
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
 }
