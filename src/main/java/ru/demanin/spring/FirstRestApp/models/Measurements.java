@@ -26,8 +26,7 @@ public class Measurements {
     @Column(name = "raining")
     private boolean raining;
 
-    @Column(name = "rainy_days_count")
-    private int rainyDaysCount;
+
     @Column(name = "created_at")
     private LocalDateTime created_at;
 
@@ -40,7 +39,6 @@ public class Measurements {
     public Measurements(double value, boolean raining, int rainyDaysCount) {
         this.value = value;
         this.raining = raining;
-        this.rainyDaysCount = rainyDaysCount;
 
 
     }
@@ -77,13 +75,7 @@ public class Measurements {
         this.raining = raining;
     }
 
-    public int getRainyDaysCount() {
-        return rainyDaysCount;
-    }
 
-    public void setRainyDaysCount(int rainyDaysCount) {
-        this.rainyDaysCount = rainyDaysCount;
-    }
 
     public LocalDateTime getCreated_at() {
         return created_at;
