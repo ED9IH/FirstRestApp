@@ -1,6 +1,5 @@
 package ru.demanin.spring.FirstRestApp.models;
 
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -50,11 +49,4 @@ public class Sensor {
         this.name = name;
     }
 
-//    public List<Measurements> getMeasurements() {
-//        return measurements;
-//    }
-
-//    public void setMeasurements(List<Measurements> measurements) {
-//        this.measurements = measurements;
-//    }
 }
