@@ -8,5 +8,4 @@ import ru.demanin.spring.FirstRestApp.models.Measurements;
 @Repository
 public interface MeasurementsRepository extends
         JpaRepository<Measurements,Integer> {
-
 }

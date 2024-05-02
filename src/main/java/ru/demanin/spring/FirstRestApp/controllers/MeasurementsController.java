@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 @RestController // @Controller + @ResponseBody над каждым методом
 @RequestMapping("/measurements")
 public class MeasurementsController {
-
     private final MeasurementsService measurementsService;
     private final ModelMapper modelMapper;
 
@@ -34,16 +33,12 @@ public class MeasurementsController {
                 collect(Collectors.toList());
     }
 
-
     @PostMapping("/add")
     public ResponseEntity<HttpStatus> create(@RequestBody @Valid MeasurementsDTO measurementsDTO,
                                              BindingResult bindingResult) {
-
-
         measurementsService.save(convertToMeasurements(measurementsDTO));
         return ResponseEntity.ok(HttpStatus.OK);
     }
-
 
     @GetMapping("/{id}")
     public MeasurementsDTO getMeasurements(@PathVariable("id") int id) {
@@ -62,5 +57,4 @@ public class MeasurementsController {
     private MeasurementsDTO convertToMeasurementsDTO(Measurements measurements) {
         return modelMapper.map(measurements, MeasurementsDTO.class);
     }
-
 }

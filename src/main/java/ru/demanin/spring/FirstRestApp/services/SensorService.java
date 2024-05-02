@@ -23,32 +23,24 @@ import java.util.stream.Collectors;
 @Service
 @Transactional(readOnly = true)
 public class SensorService {
-
     private final SensorRepository sensorRepository;
     @Autowired
     public SensorService(SensorRepository sensorRepository, MeasurementsRepository measurementsRepository) {
         this.sensorRepository = sensorRepository;
     }
-
     public List<Sensor> findAll() {
 
 
         return sensorRepository.findAll();
     }
-
     public Sensor findOne(int id) {
         Optional<Sensor> foundPerson = sensorRepository.findById(id);
         return foundPerson.orElseThrow(SensorNotFoundException::new);
     }
-
     @Transactional
     public void save(Sensor sensor) {
-//        findAll().stream().filter(s-> s.getName().equals(sensor.getName())).findFirst().orElseThrow();
-
         sensorRepository.save(sensor);
     }
-
-
 
 }
 

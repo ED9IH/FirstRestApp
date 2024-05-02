@@ -24,15 +24,13 @@ import java.util.stream.Collectors;
 @RestController // @Controller + @ResponseBody над каждым методом
 @RequestMapping("/sensor")
 public class SensorController {
-
     private final SensorService sensorService;
     private final ModelMapper modelMapper;
 
-
     @Autowired
-    public SensorController(SensorService sensorService,ModelMapper modelMapper) {
+    public SensorController(SensorService sensorService, ModelMapper modelMapper) {
         this.sensorService = sensorService;
-        this.modelMapper=modelMapper;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping()
@@ -63,20 +61,16 @@ public class SensorController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-
-
     @ExceptionHandler
     public ResponseEntity<SensorErrorResponse> handleException(SensorNotFoundException e) {
         SensorErrorResponse sensorErrorResponse = new SensorErrorResponse("Такой сенсор не зарегистрирован");
         return new ResponseEntity<>(sensorErrorResponse, HttpStatus.NOT_FOUND);
-
     }
 
     @ExceptionHandler
     public ResponseEntity<SensorErrorResponse> handleException(SensorNotCreatedException e) {
         SensorErrorResponse sensorErrorResponse = new SensorErrorResponse(e.getMessage());
         return new ResponseEntity<>(sensorErrorResponse, HttpStatus.BAD_REQUEST);
-
     }
 
     @ExceptionHandler(SQLException.class)
@@ -88,10 +82,10 @@ public class SensorController {
     private Sensor convrtToSensor(SensorDTO sensorDTO) {
         return modelMapper.map(sensorDTO, Sensor.class);
     }
-    private SensorDTO convertToSensorDTO(Sensor sensor){
-        return modelMapper.map(sensor,SensorDTO.class);
-    }
 
+    private SensorDTO convertToSensorDTO(Sensor sensor) {
+        return modelMapper.map(sensor, SensorDTO.class);
+    }
 
 }
 

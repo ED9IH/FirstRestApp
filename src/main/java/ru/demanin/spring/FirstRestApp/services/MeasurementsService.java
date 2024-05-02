@@ -13,36 +13,26 @@ import java.util.Optional;
 @Transactional
 public class MeasurementsService {
     private final MeasurementsRepository measurementsRepository;
-
     public MeasurementsService(MeasurementsRepository measurementsRepository) {
         this.measurementsRepository = measurementsRepository;
     }
-
     public List<Measurements> findAll() {
         return measurementsRepository.findAll();
-
     }
-
     public Measurements findOne(int id) {
         Optional<Measurements> foundPerson = measurementsRepository.findById(id);
         return foundPerson.orElse(null);
     }
-
-
     public Measurements save(Measurements measurements) {
         enrichMeasurements(measurements);
         return measurementsRepository.save(measurements);
-
     }
-
     public long RainyDaysCount() {
         return findAll().stream().filter(m -> m.isRaining() == true).count();
-
     }
 
     private void enrichMeasurements(Measurements measurements) {
         measurements.setCreated_at(LocalDateTime.now());
-
     }
 
 }

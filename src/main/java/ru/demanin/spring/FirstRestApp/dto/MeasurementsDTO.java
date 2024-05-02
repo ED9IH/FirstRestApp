@@ -28,7 +28,6 @@ public class MeasurementsDTO {
     @DecimalMax(value = "100.0")
     private double value;
     private boolean raining;
-
     private LocalDateTime created_at;
 
     public double getValue() {

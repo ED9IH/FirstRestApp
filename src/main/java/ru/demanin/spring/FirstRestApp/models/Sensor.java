@@ -12,17 +12,14 @@ public class Sensor {
     @OneToMany(mappedBy = "sensor")
     private List<Measurements> measurements;
 
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotEmpty(message = "Поле не должно быть пустым")
-    @Size(min=3,max = 30,message = "В название сенсора должно быть не меньше 3 и не более 30 символов")
+    @Size(min = 3, max = 30, message = "В название сенсора должно быть не меньше 3 и не более 30 символов")
     @Column(name = "name")
-
     private String name;
-
 
     public Sensor(String name) {
         this.name = name;
